@@ -1,8 +1,7 @@
 import Display from "./Display";
 import ButtonPanel from "./ButtonPanel";
-import calculate, { State } from "../logic/calclate";
+import calculate, { State } from "../logic/calculate";
 import { useState } from "react";
-import "./Calculator.module.scss"
 
 export default function Calculator(){
     const [state,setState] = useState<State>({
