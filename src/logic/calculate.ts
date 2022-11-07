@@ -59,7 +59,7 @@ function handleNumberButton(button:string,state:State):State{
 }
 
 function isOperatorButton(button:string){
-    return button === "+" || button === "-"
+    return button === "+" || button === "-" || button === "*" || button === "/" || button === "percent";
 }
 
 function handleOperatorButton(button:string,state:State):State{
@@ -156,5 +156,15 @@ function operate(state:State):number{
     if(state.operator === "-"){
         return state.operand - current;
     }
+    if(state.operator === "*"){
+        return state.operand * current;
+    }
+    if(state.operator === "/"){
+        return state.operand / current;
+    }
+    if(state.operator === "percent"){
+        return state.operand % current;
+    }
+    
     return current;
 }
