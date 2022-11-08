@@ -1,4 +1,4 @@
-import next from "next";
+import { before } from "node:test";
 
 export default function calclulate(button:string,state:State) : State{
     if(isNumberButton(button)){
@@ -18,6 +18,9 @@ export default function calclulate(button:string,state:State) : State{
     }
     if(isEqualButton(button)){
         return handleEqualButton(state);
+    }
+    if(isRootButton(button)){
+        return handleRootButton(state);
     }
     return state;
 }
@@ -145,7 +148,6 @@ function handleEqualButton(state:State):State{
         operator:null,
         isNextClear:true
     };
-
 }
 
 function operate(state:State):number{
@@ -165,6 +167,19 @@ function operate(state:State):number{
     if(state.operator === "percent"){
         return state.operand % current;
     }
-    
     return current;
+}
+
+function isRootButton(button:String){
+    return button === "root";
+}
+
+function handleRootButton(state:State):State{
+    const current = Math.sqrt(parseFloat(state.current))
+    return {
+        current:current,
+        operand:parseFloat(state.current),
+        operator:null,
+        isNextClear:true
+    }
 }
